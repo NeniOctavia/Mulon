@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<title> Canvas HTML : My First Canvas App</title>
+	<title>Click mouse and draw pada html</title>
 </head>
 
-<style type="text/css">
-	canvas {background-color: #ccc; }
+<style type="text/css" media="screen">
+	canvas{
+		background-color: #ccc;
+	}
 </style>
-
 <body>
 
-	<canvas width ="1000" height="500" id="canvas"></canvas>
-	<script type="text/javascript">
-		 var c=document.getElementById('canvas');
-		 var ctx=c.getContext('2d');
+<canvas height="450" width="1000" id="tedycanvas">
+	
+</canvas>
+
+<script type="text/javascript">
+	
+	var c = document.getElementById('tedycanvas');
+	var ctx = c.getContext("2d");
+
+	// membuat garis memakai mouse 
+
+	document.body.addEventListener('mousedown',drawline);
+	function drawline(e)
+	{
+		var x = e.offsetX;
+		var y = e.offsetY;
+		ctx.lineTo(x,y);
+		ctx.lineWidth = "2";
+		ctx.strokeStyle = #CD5C5C;
+		ctx.stroke();
+	}
+
+
+
+
+	window.addEventListener("keydown",checkKeyPress,false);
+
+	function checkKeyPress(key) {
+		if(key.keyCode == "13"){
+
+			ctx.fillStyle = #E9967;
+			ctx.fill();
+			
+	
+		}
+		else{
+			ctx.beginPath();
+			var x = e.offsetX;
+			var y = e.offsetY;
+			ctx.lineTo(x,y);
+			ctx.lineWidth = "2";
+			ctx.strokeStyle = #CD5C5C;
+			ctx.stroke();
+			
+			
+		}
+	}
 </script>
 
 </body>
-</html> 
+</html>
