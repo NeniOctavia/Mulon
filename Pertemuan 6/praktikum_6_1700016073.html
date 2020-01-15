@@ -15,7 +15,7 @@
 <style type="text/css">
 
   body,html{
-      background-color : grey;
+      background-color : #EEE8AA;
       overflow: hidden;
     }
 
@@ -26,12 +26,6 @@
   z-index: 100;
 }
 
-#canvas {
-  margin-left: auto;
-  margin-right: auto ;
-  display: block;
-  background-color : grey;
-}
 
 audio {
   position: fixed;
@@ -78,7 +72,7 @@ audio {
     var WIDTH = canvas.width;
     var HEIGHT = canvas.height;
 
-    var barWidth = (WIDTH / bufferLength) * 2.5;
+    var barWidth = (WIDTH / bufferLength) * 1;
     var barHeight;
     var x = 0;
 
@@ -89,15 +83,15 @@ audio {
 
       analyser.getByteFrequencyData(dataArray);
 
-      ctx.fillStyle = "grey";
+      ctx.fillStyle = "#EEE8AA";
       ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
       for (var i = 0; i < bufferLength; i++) {
         barHeight = dataArray[i];
         
-        var r = 15
-        var g = 195 * (i/bufferLength);
-        var b = 255 * (i/bufferLength);
+        var r = 350
+        var g = 25 * (i/bufferLength);
+        var b = 100 * (i/bufferLength);
 
         ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
         ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
