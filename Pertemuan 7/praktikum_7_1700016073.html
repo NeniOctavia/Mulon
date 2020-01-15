@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
 
-    <title>Record</title>
+    <title>createMediaStreamSource example</title>
 
     <link rel="stylesheet" href="">
+
   </head>
 <style type="text/css">
 
@@ -15,8 +16,7 @@
       background-color : #EEE8AA;
       overflow: hidden;
     }
-
-</style>
+  </style>
   <body>
 
 <button id="rec">REC</button>
@@ -56,7 +56,7 @@
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
 
-      var clipName = prompt('Beri nama pada rekaman');
+      var clipName = prompt('Beri nama rekaman');
 
       var clipContainer = document.createElement('article');
       var clipLabel = document.createElement('p');
