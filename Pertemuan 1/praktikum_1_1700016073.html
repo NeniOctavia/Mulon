@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Canvas HTML : My First Canvas App</title>
+</head>
+
+<style type="text/css">
+	canvas {background-color: #ccc; }
+</style>
+
+<body>
+
+	<canvas width ="1000" height="500" id="canvas"></canvas>
+	<script type="text/javascript">
+		 var c=document.getElementById('canvas');
+		 var ctx=c.getContext('2d');
+
+		 //Segitiga kiri
+		ctx.beginPath(); 
+		ctx.moveTo(200, 125); 
+		ctx.lineTo(70, 250); 
+		ctx.lineTo(200, 375); 
+		ctx.closePath(); 
+		ctx.strokeStyle = "green";
+		ctx.fillStyle = "green"
+		ctx.fill();
+		ctx.stroke(); 
+
+		//Segitiga kanan
+		ctx.beginPath(); 
+		ctx.moveTo(800, 125); 
+		ctx.lineTo(930, 250); 
+		ctx.lineTo(800, 375); 
+		ctx.closePath(); 
+		ctx.strokeStyle = "green";
+		ctx.fillStyle = "green";
+		ctx.fill();
+		ctx.stroke();
+
+		 //Lingkaran belakang
+		 //var ctx = c.getContext("2d");
+		 ctx.beginPath();
+		 ctx.arc(500,250,180,0,2 * Math.PI);
+		 ctx.strokeStyle = "white";
+		 ctx.lineWidth = 7 ;
+		 ctx.fillStyle = "maroon";
+		 ctx.fill();
+		 ctx.stroke();
+
+		  //Lingkaran depan
+		 ctx.beginPath();
+		 ctx.arc(500,250,130,0,2 * Math.PI);
+		 ctx.strokeStyle = "orange";
+		 ctx.fillStyle = "orange";
+		 ctx.fill();
+		 ctx.stroke();
+
+		 //Persegi
+		 ctx.beginPath();
+		 ctx.rect(440,190,120,120);
+		 ctx.strokeStyle = "white";
+		 ctx.lineWidth = 7 ;
+		 ctx.fillStyle = "#4682B4";
+		 ctx.fill();
+		 ctx.stroke();
+
+</script>
+
+</body>
+</html> 
