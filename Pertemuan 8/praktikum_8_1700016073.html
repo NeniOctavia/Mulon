@@ -64,7 +64,6 @@ function image(x,y)
 		if(!this.cropping)
 		ctx.drawImage(avatar,this.x,this.y);
 		else
-		//ctx.drawImage(avatar,this.startCropX,this.startCropY,this.croptWidth,this.cropHeight,this.x,this.y,this.width,this.height);
 		ctx.drawImage(avatar,this.startCropX,this.startCropY,this.cropWidth,this.cropHeight,this.x,this.y,this.width,this.height);
 	}
 }
@@ -97,21 +96,7 @@ function editingMode(mode)
 }
 
 function cropImage()
-{
-	/*
-	var ctx=myApp.context;	
-	var cropStartX=rect.x,
-	cropStartY=rect.y,
-	cropWidth=100,
-	cropHeight=100,
-	imageX=500,
-	imageY=500,
-	imageWidth=cropWidth,
-	imageHeight=cropHeight;
-	var imageSource=new Image();
-	imageSource.src='minion.jpg';	
-	ctx.drawImage(imageSource,cropStartX,cropStartY,cropWidth,cropHeight,imageX,imageY,imageWidth,imageHeight);	
-	*/	
+{	
 	img.x=rect.x;
 	img.y=rect.y;
 	img.width=rect.width;
