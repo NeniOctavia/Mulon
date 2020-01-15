@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width">
 
-    <title>createMediaStreamSource example</title>
+    <title>Record</title>
 
     <link rel="stylesheet" href="">
   </head>
@@ -56,7 +56,7 @@
     mediaRecorder.onstop = function(e) {
       console.log("data available after MediaRecorder.stop() called.");
 
-      var clipName = prompt('Enter a name for your sound clip');
+      var clipName = prompt('Beri nama pada rekaman');
 
       var clipContainer = document.createElement('article');
       var clipLabel = document.createElement('p');
@@ -67,7 +67,7 @@
      
       clipContainer.classList.add('clip');
       audio.setAttribute('controls', '');
-      deleteButton.innerHTML = "Delete";
+      deleteButton.innerHTML = "Hapus";
       downloadButton.innerHTML = "Download";   
       clipLabel.innerHTML = clipName;
 
