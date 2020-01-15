@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html>
+
+<div id="content">
+  <input type="file" id="thefile" accept="audio/*" />
+  <canvas id="canvas"></canvas>
+  <audio id="audio" controls></audio>
+</div>
+
+<head>
+	<title>Image Cropping</title>
+  <meta charset='utf-8'>
+</head>
+
+<style type="text/css">
+
+  body,html{
+      background-color : #EEE8AA;
+      overflow: hidden;
+    }
+
+#thefile {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  z-index: 100;
+}
+
+
+audio {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  width: calc(100% - 20px);
+}
+
+</style>
+
+<body>
+
+<script type="text/javascript">
+
+
+
+	window.onload = function() {
+  
+  var file = document.getElementById("thefile");
+  var audio = document.getElementById("audio");
+  
+  file.onchange = function() {
+    var files = this.files;
+    audio.src = URL.createObjectURL(files[0]);
+    audio.load();
+    audio.play();
+    var context = new AudioContext();
+    var src = context.createMediaElementSource(audio);
+    var analyser = context.createAnalyser();
+
+    var canvas = document.getElementById("canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    var ctx = canvas.getContext("2d");
+
+    src.connect(analyser);
+    analyser.connect(context.destination);
+
+    analyser.fftSize = 256;
+
+    var bufferLength = analyser.frequencyBinCount;
+    console.log(bufferLength);
+
+    var dataArray = new Uint8Array(bufferLength);
+
+    var WIDTH = canvas.width;
+    var HEIGHT = canvas.height;
+
+    var barWidth = (WIDTH / bufferLength) * 2.5;
+    var barHeight;
+    var x = 0;
+
+    function renderFrame() {
+      requestAnimationFrame(renderFrame);
+
+      x = 0;
+
+      analyser.getByteFrequencyData(dataArray);
+
+      ctx.fillStyle = "#EEE8AA";
+      ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+      for (var i = 0; i < bufferLength; i++) {
+        barHeight = dataArray[i];
+        
+        var r = 15
+        var g = 195 * (i/bufferLength);
+        var b = 255 * (i/bufferLength);
+
+        ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+        ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1
+      }
+    }
+
+    audio.play();
+    renderFrame();
+  };
+};
+
+var obj=[], objNum=70, color=['#FFA07A','#8FBC8F','#DAA520','#CD5C5C'];
+function startGame() {
+    for(var i=0; i<objNum; i++)
+    {
+      var pos=Math.floor(Math.random()*800);
+      var speed=Math.floor(Math.random()*15)+1;
+      var clr=Math.floor(Math.random()*10);
+      obj[i]= new component(6, 80, color[clr], pos, 0,speed);
+    }
+   
+    myGameArea.start();
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 800;
+        this.canvas.height = 450;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 20);
+    },
+    clear : function() {
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y,speed) {
+    this.width = width;
+    this.height = height;
+    this.x = x;
+    this.y = y;    
+    this.speed=speed;
+    this.update = function(){
+        ctx = myGameArea.context;
+        ctx.fillStyle = color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+
+function updateGameArea() {
+    myGameArea.clear();
+    for(var i=0; i<objNum;i++)
+    {
+      obj[i].y+=obj[i].speed;
+      if(obj[i].y>400){
+         var pos=Math.floor(Math.random()*800);
+         var speed=Math.floor(Math.random()*10)+1;
+         obj[i].y=0;
+         obj[i].x=pos;
+         obj[i].speed=speed;
+      }
+      obj[i].update();
+    }    
+}
+
+startGame()
+
+    </script>
+  </body>
+</html>
